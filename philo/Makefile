@@ -2,12 +2,13 @@
 SRCS	= srcs/action.c \
 		srcs/brain.c \
 		srcs/checks.c \
-		srcs/error.c \
 		srcs/forks.c \
 		srcs/free.c \
 		srcs/init.c \
+		srcs/logging.c \
 		srcs/main.c \
 		srcs/time.c \
+		srcs/utils.c \
 
 OBJS	= $(SRCS:.c=.o)
 
