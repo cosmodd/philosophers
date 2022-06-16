@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:39:23 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/16 08:55:29 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/16 10:25:09 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,11 @@ int	main(int ac, char **av)
 	if (check >= 0)
 		return (check);
 	init_room(&room, ac, av);
+	if (!validate_room(&room))
+	{
+		free_room(&room);
+		return (EXIT_SUCCESS);
+	}
 	launch_philos(&room);
 	wait_philos(&room);
 	free_room(&room);
