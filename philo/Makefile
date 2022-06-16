@@ -4,6 +4,7 @@ SRCS	= srcs/action.c \
 		srcs/checks.c \
 		srcs/error.c \
 		srcs/forks.c \
+		srcs/free.c \
 		srcs/init.c \
 		srcs/main.c \
 		srcs/time.c \

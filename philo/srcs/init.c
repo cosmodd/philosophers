@@ -6,11 +6,27 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:38:42 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/15 14:51:36 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/16 08:48:47 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	new_fork(t_fork **fork, t_fork *prev, int id)
+{
+	(*fork) = malloc(sizeof(t_fork));
+	if (*fork == NULL)
+		return ;
+	(*fork)->id = id;
+	(*fork)->available = true;
+	pthread_mutex_init(&(*fork)->mutex, NULL);
+	if (prev != NULL)
+	{
+		(*fork)->prev = prev;
+		prev->next = (*fork);
+	}
+	(*fork)->next = NULL;
+}
 
 void	init_forks(t_room *room)
 {
@@ -22,18 +38,14 @@ void	init_forks(t_room *room)
 	previous = NULL;
 	while (++i < room->philo_count)
 	{
-		node = malloc(sizeof(t_fork));
-		node->id = i;
-		node->available = true;
-		node->next = NULL;
-		pthread_mutex_init(&node->mutex, NULL);
+		new_fork(&node, previous, i);
+		if (node == NULL)
+		{
+			free_forks(room->forks, i);
+			return print_error("Couldn't allocate enough fork !");
+		}
 		if (room->forks == NULL)
 			room->forks = node;
-		if (previous != NULL)
-		{
-			node->prev = previous;
-			previous->next = node;
-		}
 		previous = node;
 	}
 	room->forks->prev = previous;
@@ -69,6 +81,11 @@ void	init_philos(t_room *room)
 	while (++i < room->philo_count)
 	{
 		new_philo(&node, previous, fork, i);
+		if (node == NULL)
+		{
+			free_philos(room->philos, i);
+			return print_error("Couldn't allocate enough philo !");
+		}
 		node->room = room;
 		node->last_eat = room->times.start;
 		if (room->philos == NULL)

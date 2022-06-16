@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:39:23 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/15 10:31:43 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/16 08:55:29 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_args(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		if (!is_digit(av[i++]))
+		if (!is_number(av[i++]))
 		{
 			print_error("Invalid argument !");
 			return (EXIT_FAILURE);
@@ -88,5 +88,6 @@ int	main(int ac, char **av)
 	init_room(&room, ac, av);
 	launch_philos(&room);
 	wait_philos(&room);
+	free_room(&room);
 	return (EXIT_SUCCESS);
 }

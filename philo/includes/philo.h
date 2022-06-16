@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:40:11 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/15 15:14:55 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/16 08:55:29 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ typedef struct s_room
 void	print_action(t_philo *actor, char *action);
 bool	is_dead(t_philo *self);
 void	*brain(void *arg);
-bool	is_digit(char *string);
+bool	is_number(char *string);
 void	print_usage(void);
 void	print_error(char *error);
 bool	take_forks(t_philo *self);
 void	return_forks(t_philo *self);
+void	free_philos(t_philo *philos, int count);
+void	free_forks(t_fork *forks, int count);
+void	free_room(t_room *room);
 void	init_forks(t_room *room);
 void	init_philos(t_room *room);
 void	init_room(t_room *room, int ac, char **av);
