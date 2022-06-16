@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:38:42 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/16 08:48:47 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/16 10:01:29 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_forks(t_room *room)
 		if (node == NULL)
 		{
 			free_forks(room->forks, i);
-			return print_error("Couldn't allocate enough fork !");
+			return (print_error("Couldn't allocate enough fork !"));
 		}
 		if (room->forks == NULL)
 			room->forks = node;
@@ -84,7 +84,7 @@ void	init_philos(t_room *room)
 		if (node == NULL)
 		{
 			free_philos(room->philos, i);
-			return print_error("Couldn't allocate enough philo !");
+			return (print_error("Couldn't allocate enough philo !"));
 		}
 		node->room = room;
 		node->last_eat = room->times.start;
@@ -100,12 +100,12 @@ void	init_philos(t_room *room)
 void	init_room(t_room *room, int ac, char **av)
 {
 	(*room) = (t_room){0};
-	room->philo_count = atoi(av[1]);
-	room->times.die = atoi(av[2]);
-	room->times.eat = atoi(av[3]);
-	room->times.sleep = atoi(av[4]);
+	room->philo_count = simple_atoi(av[1]);
+	room->times.die = simple_atol(av[2]);
+	room->times.eat = simple_atol(av[3]);
+	room->times.sleep = simple_atol(av[4]);
 	if (ac == 6)
-		room->eat_count = atoi(av[5]);
+		room->eat_count = simple_atoi(av[5]);
 	room->times.start = get_time_ms();
 	room->philo_dead = 0;
 	pthread_mutex_init(&room->death, NULL);
