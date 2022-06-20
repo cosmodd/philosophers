@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 13:40:57 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/15 17:42:47 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/20 10:16:42 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static bool	do_eat(t_philo *self)
 	philo_wait(self, self->room->times.eat);
 	return_forks(self);
 	self->eat_count++;
-	return (self->eat_count <= self->room->eat_count
+	return (self->eat_count < self->room->eat_count
 		|| self->room->eat_count == 0);
 }
 
