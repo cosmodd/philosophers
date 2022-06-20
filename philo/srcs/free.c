@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:46:02 by mrattez           #+#    #+#             */
-/*   Updated: 2022/06/20 09:07:16 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/06/20 10:23:17 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_philos(t_philo *philos, int count)
 {
 	t_philo	*current;
 	t_philo	*next;
-	int	i;
+	int		i;
 
 	i = 0;
 	current = philos;
